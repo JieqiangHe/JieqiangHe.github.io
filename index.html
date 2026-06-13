@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jieqiang He — Pomology &amp; Rhizosphere Genomics</title>
+<meta name="description" content="Jieqiang He, Ph.D. in Pomology at Northwest A&amp;F University. Apple biological breeding, abiotic stress, multi-omics, and the rhizosphere microbiome.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F7F4;
+    --paper-2:#FFFFFF;
+    --ink:#1C1C1A;
+    --muted:#6E6E66;
+    --faint:#9A9A90;
+    --line:#E1E1D9;
+    --line-strong:#CFCFC5;
+    --accent:#3A6B4E;       /* orchard */
+    --accent-deep:#2A4F39;
+    --accent-wash:#EBF0EC;
+    --serif:"Newsreader",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --maxw:880px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:50px;}
+  .brand{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em;}
+  .brand .dot{color:var(--accent);}
+  .nav{display:flex;gap:22px;}
+  .nav a{
+    font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    letter-spacing:.02em;padding:4px 0;border-bottom:1px solid transparent;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  .nav a:hover{color:var(--ink);border-color:var(--accent);}
+  @media(max-width:620px){.nav{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:46px 0 40px;border-bottom:1px solid var(--line);}
+  .hero-top{display:block;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 12px;
+  }
+  h1{
+    font-size:clamp(20px,2.5vw,24px);line-height:1.25;font-weight:600;
+    margin:0 0 6px;letter-spacing:0;
+  }
+  .role{font-size:19px;color:var(--muted);margin:0 0 26px;font-style:italic;}
+  .lede{font-size:21px;line-height:1.5;max-width:60ch;margin:0 0 30px;}
+  .lede em{font-style:italic;color:var(--accent-deep);}
+
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+  .pill{
+    font-family:var(--mono);font-size:12.5px;color:var(--ink);
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:7px 14px;display:inline-flex;align-items:center;gap:7px;
+    transition:border-color .18s ease,color .18s ease,background .18s ease;
+  }
+  .pill:hover{border-color:var(--accent);color:var(--accent-deep);background:var(--paper-2);}
+  .pill.stat{cursor:default;}
+  .pill.stat:hover{border-color:var(--line-strong);color:var(--ink);background:transparent;}
+  .pill svg{width:14px;height:14px;}
+
+  .facts{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);}
+  .fact{padding:18px 28px 4px 0;}
+  .fact .n{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--accent-deep);line-height:1;}
+  .fact .l{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:7px;}
+
+  /* ---------- sections ---------- */
+  section{padding:40px 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.05em;}
+  .sec-title{font-size:13px;font-family:var(--mono);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);}
+  .sec-rule{flex:1;height:1px;background:var(--line);align-self:center;}
+
+  /* research */
+  .research-grid{display:grid;grid-template-columns:1fr;gap:34px;}
+  .prose p{margin:0 0 16px;max-width:64ch;}
+  .prose p:last-child{margin-bottom:0;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .chip{
+    font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);
+    background:var(--accent-wash);border:1px solid #DCE5DD;border-radius:4px;
+    padding:5px 10px;
+  }
+
+  .skills{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px;border-top:1px solid var(--line);}
+  .skill-row{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .skill-row .k{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding-top:3px;}
+  .skill-row .v{font-size:16.5px;color:var(--ink);}
+  .skill-row .v strong{font-weight:600;}
+  @media(max-width:560px){.skill-row{grid-template-columns:1fr;gap:6px;}}
+
+  /* timeline (edu + experience) */
+  .timeline{border-left:1px solid var(--line-strong);margin-left:6px;}
+  .tl-item{position:relative;padding:0 0 22px 30px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:1.5px solid var(--accent);
+  }
+  .tl-date{font-family:var(--mono);font-size:12px;color:var(--accent-deep);letter-spacing:.03em;margin-bottom:5px;}
+  .tl-title{font-size:18px;font-weight:600;margin:0 0 3px;}
+  .tl-sub{font-size:15.5px;color:var(--muted);margin:0 0 4px;}
+  .tl-note{font-size:15px;color:var(--muted);max-width:62ch;}
+  .tl-note em{font-style:italic;}
+
+  /* publications */
+  .pub-legend{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin:0 0 18px;letter-spacing:.02em;}
+  .pub-legend b{color:var(--accent-deep);font-weight:600;}
+
+  ol.pubs{list-style:none;margin:0;padding:0;}
+  .pub{
+    display:grid;grid-template-columns:64px 1fr;gap:20px;
+    padding:15px 0;border-top:1px solid var(--line);
+    transition:background .18s ease;
+  }
+  .pub:hover{background:#F1F0EA;}
+  .pub .idx{
+    font-family:var(--mono);font-size:13px;color:var(--faint);padding-top:3px;
+    border-right:1px solid var(--line);text-align:left;
+  }
+  .pub .body{min-width:0;}
+  .pub .title{font-size:17px;line-height:1.38;font-weight:500;margin:0 0 6px;}
+  .pub .title i, .pub .authors i{font-style:italic;}
+  .pub .authors{font-size:14.5px;color:var(--muted);line-height:1.5;margin:0 0 7px;}
+  .pub .authors .me{color:var(--ink);font-weight:600;background:linear-gradient(transparent 62%,var(--accent-wash) 62%);}
+  .pub .venue{font-family:var(--mono);font-size:12.5px;color:var(--ink);}
+  .pub .venue .jrnl{color:var(--accent-deep);font-weight:500;}
+  .pub .venue .yr{color:var(--muted);}
+  @media(max-width:560px){
+    .pub{grid-template-columns:1fr;gap:6px;}
+    .pub .idx{border-right:none;padding-top:0;}
+  }
+
+  /* awards + service */
+  .two-col{display:grid;grid-template-columns:1fr;gap:32px;}
+  .award-list,.svc-list{list-style:none;margin:0;padding:0;}
+  .award-list li,.svc-list li{
+    padding:11px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.45;
+  }
+  .award-list li .yr,.svc-list li .yr{font-family:var(--mono);font-size:12px;color:var(--accent-deep);display:block;margin-bottom:3px;letter-spacing:.03em;}
+  @media(min-width:760px){.two-col{grid-template-columns:1.3fr 1fr;}}
+
+  /* footer */
+  footer{padding:32px 0 44px;}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:flex-end;}
+  .foot-name{font-size:22px;font-weight:500;}
+  .foot-meta{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.8;}
+  .foot-meta a:hover{color:var(--accent-deep);}
+
+  /* load animation */
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .hero-top,.hero .links,.hero .facts{animation:rise .6s cubic-bezier(.2,.7,.2,1) both;}
+  .hero .links{animation-delay:.08s;}
+  .hero .facts{animation-delay:.14s;}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Jieqiang He</a>
+    <nav class="nav">
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <h1>Jieqiang He</h1>
+        <div class="chips" style="margin:12px 0 22px;">
+          <span class="chip">Apple / Malus</span>
+          <span class="chip">Abiotic stress</span>
+          <span class="chip">Grafting</span>
+          <span class="chip">Genome &amp; Epigenome</span>
+          <span class="chip">Transcriptome / Epitranscriptome</span>
+          <span class="chip">Rhizosphere microbiome</span>
+          <span class="chip">RNA mobility</span>
+          <span class="chip">Population genetics</span>
+        </div>
+        <div class="links">
+          <a class="pill" href="mailto:jieqiang.he.dawn@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            jieqiang.he.dawn@gmail.com
+          </a>
+          <a class="pill" href="https://scholar.google.com/citations?user=R8FDCN8AAAAJ" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 10 6-10 6L2 9z"/><path d="M6 11v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4"/></svg>
+            Google Scholar
+          </a>
+          <a class="pill" href="https://orcid.org/0000-0002-2617-3159" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M9 9h.01"/></svg>
+            ORCID 0000-0002-2617-3159
+          </a>
+          <span class="pill stat">h-index 16</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">Education</span><span class="sec-rule"></span></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2019 — 2026</div>
+        <p class="tl-title">Ph.D. in Pomology (Direct Ph.D. Program)</p>
+        <p class="tl-sub">Northwest A&amp;F University · College of Horticulture</p>
+        <p class="tl-note">Ph.D. degree conferred June 2026. Advisor: Prof. Qingmei Guan; in the group since 2017.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2015 — 2019</div>
+        <p class="tl-title">B.Sc. in Agriculture — Horticulture Elite Class</p>
+        <p class="tl-sub">Northwest A&amp;F University</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Research Internships</span><span class="sec-rule"></span></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Mar — Jun 2019 · 3-month exchange</div>
+        <p class="tl-title">Visiting Research Assistant — Fondazione Edmund Mach (FEM)</p>
+        <p class="tl-sub">Trento, Italy · Dept. of Genomics and Advanced Biology</p>
+        <p class="tl-note">Bioinformatics training in genomics and transcriptomics of apple fire blight. Supervised by Dr. Mickael Arnaud Malnoy.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul — Aug 2016 · 1-month exchange</div>
+        <p class="tl-title">Visiting Student — NPUST</p>
+        <p class="tl-sub">Taiwan, China</p>
+        <p class="tl-note">Field survey of organic fruit and vegetable markets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Publications</span><span class="sec-rule"></span></div>
+    <p class="pub-legend"><b>#</b> co-first author &nbsp;·&nbsp; <b>*</b> corresponding author &nbsp;·&nbsp; <span style="background:linear-gradient(transparent 62%,var(--accent-wash) 62%);color:var(--ink);font-weight:600;">name</span> highlighted</p>
+    <ol class="pubs" id="pubs"></ol>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Awards &amp; Service</span><span class="sec-rule"></span></div>
+    <div class="two-col">
+      <div>
+        <ul class="award-list">
+          <li><span class="yr">May 2026</span>Speaker — China–Japan Bilateral Symposium on the Regulation of Plant Growth and Development</li>
+          <li><span class="yr">2020 · 2022 · 2023 · 2024</span>First Prize Scholarship, NWAFU</li>
+          <li><span class="yr">Nov 2023</span>First Prize (Top 2 of 36), Doctoral &amp; Post-Doctoral Forum — 10th International Horticulture Research Conference</li>
+          <li><span class="yr">Sep 2023</span>Student Speaker Representative, 2nd Symposium of the International Joint Apple Research Center</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="svc-list">
+          <li><span class="yr">2026</span>Reviewer — <i>Plant Science</i> (Elsevier)</li>
+          <li><span class="yr">2025</span>Reviewer — <i>Industrial Crops and Products</i> (Elsevier)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-name">Jieqiang He</div>
+      <div class="foot-meta">Pomology &middot; Northwest A&amp;F University</div>
+    </div>
+    <div class="foot-meta">
+      <a href="mailto:jieqiang.he.dawn@gmail.com">jieqiang.he.dawn@gmail.com</a><br>
+      <a href="https://scholar.google.com/citations?user=R8FDCN8AAAAJ" target="_blank" rel="noopener">Google Scholar</a> &middot;
+      <a href="https://orcid.org/0000-0002-2617-3159" target="_blank" rel="noopener">ORCID</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Author segment belonging to Jieqiang He is wrapped in ⟦ ⟧ for highlighting.
+const PUBS = [
+ {a:"Hou, N.#, ⟦He, J.#⟧, Bao, C.#, Zhi, F., Shen, X., Liu, Y., Li, C., Fan, T., Yang, X., Chu, B., Qin, G., Liu, Z., Mei, C., Tan, B., Feng, J., Ma, F., Malnoy, M.*, Li, X.*, & Guan, Q.*", t:"MdDSK2a-Like–MdMTA module functions in apple cold response via regulating ROS detoxification and cell wall deposition.", j:"Advanced Science", y:"2025", v:"12(26), 2504405", lead:true, pub:true},
+ {a:"Wang, S.#, ⟦He, J.#⟧, Hu, B., Deng, M., Li, W., Guo, J., Song, Y., Zheng, Q., Song, X., Ma, F., Wang, J.*, Guan, Q.*, & Xu, J.*", t:"An integrative multi-omics analysis of histone modifications and DNA methylation reveals the epigenomic landscape in apple under drought stress.", j:"Plant Biotechnology Journal", y:"2025", v:"23(10), 4440–4460", lead:true, pub:true},
+ {a:"Wen, J.#, ⟦He, J.#⟧, Wang, H., Liu, Z., Shen, X., Geng, D., Ma, F., Guan, Q.*, & Li, X.*", t:"Genome-wide identification and expression analysis of long noncoding RNAs in MdHYL1-mediated regulation of leaf development and water transport in apple.", j:"Fruit Research", y:"2025", v:"5(1)", lead:true, pub:true},
+ {a:"Song, Y.#, ⟦He, J.#⟧, Guo, J.#, Xie, Y., Ma, Z., Liu, Z., Niu, C., Li, X., Chu, B., Tahir, M. M., Xu, J., Ma, F., & Guan, Q.*", t:"The chromatin remodeller MdRAD5B enhances drought tolerance by coupling MdLHP1-mediated H3K27me3 in apple.", j:"Plant Biotechnology Journal", y:"2024", v:"22(3), 617–634", lead:true, pub:true},
+ {a:"Zhang, D.#, ⟦He, J.#⟧, Cheng, P., Zhang, Y., Khan, A., Wang, S., Li, Z., Zhao, S., Zhan, X., Ma, F., Li, X., & Guan, Q.*", t:"4-methylumbelliferone (4-MU) enhances drought tolerance of apple by regulating rhizosphere microbial diversity and root architecture.", j:"Horticulture Research", y:"2023", v:"10(7), uhad099", lead:true, pub:true},
+ {a:"Xu, J.#, ⟦He, J.#*⟧, Hu, B., Hou, N., Guo, J., Wang, C., Li, X., Li, Z., Zhai, J., Zhang, T., Ma, C., Ma, F., & Guan, Q.*", t:"Global hypermethylation of the N6-methyladenosine RNA modification associated with apple heterografting.", j:"Plant Physiology", y:"2023", v:"193(4), 2513–2537", lead:true, pub:true, note:"Co-first &amp; co-corresponding author"},
+ {a:"Li, Z.#, Wang, Lun#, ⟦He, J.#⟧, Li, X.#, Hou, N., Guo, J., Niu, C., Li, Chaoshuo, Liu, S., Xu, J., Xie, Y., Zhang, D., Shen, X., Lu, L., Geng, D., Chen, P., Jiang, L., Wang, Liping, Li, H., Malnoy, M., Deng, C., Zou, Y., Li, C., Zhan, X., Dong, Y., Notaguchi, M., Ma, F.*, Xu, Q.*, & Guan, Q.*", t:"Chromosome-scale reference genome provides insights into the genetic origin and grafting-mediated stress tolerance of <i>Malus prunifolia</i>.", j:"Plant Biotechnology Journal", y:"2022", v:"20(6), 1015–1017", lead:true, pub:true},
+ {a:"⟦He, J.⟧, Guo, J., Jiang, L., An, W., Ma, F., Guan, Q.*, & Niu, C.*", t:"Transcriptional effects of rootstock on scion after drought: a case study of using MdGH3 RNAi as the rootstock.", j:"Horticulturae", y:"2022", v:"8(12), 1212", lead:true, pub:true},
+ {a:"Mao, X., Hou, N., Liu, Z.*, & ⟦He, J.*⟧", t:"Profiling of N6-methyladenosine (m6A) modification landscape in response to drought stress in apple (<i>Malus prunifolia</i> (Willd.) Borkh).", j:"Plants", y:"2021", v:"11(1), 103", lead:true, pub:true},
+ {a:"Zhi, F., Fan, T., Zhang, Y., Chen, P., He, S., Li, X., Zhang, S., ⟦He, J.⟧, Shen, X., Bao, C., Niu, C., Ma, F., Xie, Y., & Guan, Q.", t:"MdKIN10-mediated phosphorylation of the E3 ubiquitin ligase MdMIEL1 leads to its autophagic degradation under cold stress.", j:"The Plant Cell", y:"2025", v:"koaf284", lead:false, pub:true},
+ {a:"Shen, W., Zhang, D., Zhang, Z., ⟦He, J.⟧, Khalil, A., Li, X., Ma, F., Guan, Q., & Niu, C.", t:"The SET-domain-containing protein MdSDG26 negatively regulates <i>Alternaria alternata</i> resistance in apple.", j:"Plant, Cell & Environment", y:"2025", v:"48(1), 323–337", lead:false, pub:true},
+ {a:"Cheng, P., Yang, X., Zhang, J., Xia, X., Li, Y., ⟦He, J.⟧, Zhang, D., Zhang, Y., Ma, F., Ma, F., Niu, C., & Guan, Q.", t:"The MdGAMYB–MdHVA22g module confers drought tolerance by mediating γ-aminobutyric acid content and reactive oxygen species scavenging.", j:"The Plant Journal", y:"2025", v:"124(1), e70503", lead:false, pub:true},
+ {a:"Bai, D., Chen, T., Xun, J., Ma, C., … ⟦He, J.⟧, … Liu, Y. (consortium)", t:"EasyMetagenome: a user-friendly and flexible pipeline for shotgun metagenomic analysis in microbiome research.", j:"iMeta", y:"2025", v:"4(1), e70001", lead:false, pub:true},
+ {a:"Zhang, Y., ⟦He, J.⟧, Qin, G., Yang, K., Chen, P., Niu, C., Li, X., Mei, C., Wang, J., Guan, Q., & Bao, C.", t:"Apple MdZAT5 mediates root development under drought stress.", j:"Plant Physiology and Biochemistry", y:"2024", v:"213, 108833", lead:false, pub:true},
+ {a:"Yue, Q., Yang, X., Cheng, P., ⟦He, J.⟧, Shen, W., Li, Y., Ma, F., Niu, C., & Guan, Q.", t:"Heterologous overexpression of apple MdKING1 promotes fruit ripening in tomato.", j:"Plants", y:"2023", v:"12(15), 2848", lead:false, pub:true},
+ {a:"Yue, Q., ⟦He, J.⟧, Yang, X., Cheng, P., Khan, A., Shen, W., Song, Y., Wang, S., Ma, F., & Guan, Q.", t:"Transcriptomic analysis revealed the discrepancy between early-ripening ‘Geneva Early’ and late-ripening ‘Hanfu’ apple cultivars during fruit development and ripening.", j:"Horticulturae", y:"2023", v:"9(5), 570", lead:false, pub:true},
+ {a:"Shen, X., Song, Y., Ping, Y., ⟦He, J.⟧, Xie, Y., Ma, F., Li, X., & Guan, Q.", t:"The RNA-binding protein MdHYL1 modulates cold tolerance and disease resistance in apple.", j:"Plant Physiology", y:"2023", v:"192(3), 2143–2160", lead:false, pub:true},
+ {a:"Cheng, P., Yue, Q., Zhang, Y., Zhao, S., Khan, A., Yang, X., ⟦He, J.⟧, Wang, S., Shen, W., Qian, Q., Du, W., Ma, F., Zhang, D., & Guan, Q.", t:"Application of γ-aminobutyric acid (GABA) improves fruit quality and rootstock drought tolerance in apple.", j:"Journal of Plant Physiology", y:"2023", v:"280, 153890", lead:false, pub:true},
+ {a:"Wang, S., ⟦He, J.⟧, Deng, M., Wang, C., Wang, R., Yan, J., Luo, M., Ma, F., Guan, Q., & Xu, J.", t:"Integrating ATAC-seq and RNA-seq reveals the dynamics of chromatin accessibility and gene expression in apple response to drought.", j:"Int. Journal of Molecular Sciences", y:"2022", v:"23(19), 11191", lead:false, pub:true},
+ {a:"Wang, S., Guo, M., Huang, K., Qi, Q., Li, W., Yan, J., ⟦He, J.⟧, Guan, Q., Ma, F., & Xu, J.", t:"Genome-wide identification and characterization of long noncoding RNAs involved in apple fruit development and ripening.", j:"Scientia Horticulturae", y:"2022", v:"295, 110898", lead:false, pub:true},
+ {a:"Shen, X., ⟦He, J.⟧, Ping, Y., Guo, J., Hou, N., Cao, F., Li, X., Geng, D., Wang, S., Chen, P., Qin, G., Ma, F., & Guan, Q.", t:"The positive feedback regulatory loop of miR160–Auxin Response Factor 17–HYPONASTIC LEAVES 1 mediates drought tolerance in apple trees.", j:"Plant Physiology", y:"2022", v:"188(3), 1686–1708", lead:false, pub:true},
+ {a:"Niu, C., Jiang, L., Cao, F., Liu, C., Guo, J., Zhang, Z., Yue, Q., Hou, N., Liu, Z., Li, X., Tahir, M. M., ⟦He, J.⟧, Li, Z., Li, C., Ma, F., & Guan, Q.", t:"Methylation of a MITE insertion in the MdRFNR1-1 promoter is positively associated with its allelic expression in apple in response to drought stress.", j:"The Plant Cell", y:"2022", v:"34(10), 3983–4006", lead:false, pub:true},
+ {a:"Jiang, L., Zhang, D., Liu, C., Shen, W., ⟦He, J.⟧, Yue, Q., Niu, C., Yang, F., Li, X., Shen, X., Hou, N., Chen, P., Ma, F., & Guan, Q.", t:"MdGH3.6 is targeted by MdMYB94 and plays a negative role in apple water-deficit stress tolerance.", j:"The Plant Journal", y:"2022", v:"109(5), 1271–1289", lead:false, pub:true},
+ {a:"Hou, N., Li, C., ⟦He, J.⟧, Liu, Y., Yu, S., Malnoy, M., Mobeen Tahir, M., Xu, L., Ma, F., & Guan, Q.", t:"MdMTA-mediated m6A modification enhances drought tolerance by promoting mRNA stability and translation efficiency of genes involved in lignin deposition and oxidative stress.", j:"New Phytologist", y:"2022", v:"234(4), 1294–1314", lead:false, pub:true},
+ {a:"Chen, P., Zhi, F., Li, X., Shen, W., Yan, M., ⟦He, J.⟧, Bao, C., Fan, T., Zhou, S., Ma, F., & Guan, Q.", t:"Zinc-finger protein MdBBX7/MdCOL9, a target of MdMIEL1 E3 ligase, confers drought tolerance in apple.", j:"Plant Physiology", y:"2022", v:"188(1), 540–559", lead:false, pub:true},
+ {a:"Bao, C., Qin, G., Cao, F., ⟦He, J.⟧, Shen, X., Chen, P., Niu, C., Zhang, D., Ren, T., Zhi, F., Ma, L., Ma, F., & Guan, Q.", t:"MdZAT5 regulates drought tolerance via mediating accumulation of drought-responsive miRNAs and mRNAs in apple.", j:"New Phytologist", y:"2022", v:"236(6), 2131–2150", lead:false, pub:true},
+ {a:"Zhao, C., Liu, X., ⟦He, J.⟧, Xie, Y., Xu, Y., Ma, F., & Guan, Q.", t:"Apple TIME FOR COFFEE contributes to freezing tolerance by promoting unsaturation of fatty acids.", j:"Plant Science", y:"2021", v:"302, 110695", lead:false, pub:true},
+ {a:"Li, C., Hou, N., Fang, N., ⟦He, J.⟧, Ma, Z., Ma, F., Guan, Q., & Li, X.", t:"Cold shock protein 3 plays a negative role in apple drought tolerance by regulating oxidative stress response.", j:"Plant Physiology and Biochemistry", y:"2021", v:"168, 83–92", lead:false, pub:true},
+ {a:"Chen, P., Yan, M., Li, L., ⟦He, J.⟧, Zhou, S., Li, Z., Niu, C., Bao, C., Zhi, F., Ma, F., & Guan, Q.", t:"The apple DNA-binding one zinc-finger protein MdDof54 promotes drought resistance.", j:"Horticulture Research", y:"2020", v:"7(1), 195", lead:false, pub:true}
+];
+
+const list = document.getElementById('pubs');
+
+function authorsHTML(s){
+  return s.replace(/⟦/g,'<span class="me">').replace(/⟧/g,'</span>');
+}
+
+function render(){
+  list.innerHTML = '';
+  PUBS.forEach((p, i) => {
+    const li = document.createElement('li');
+    li.className = 'pub';
+    const venueLine = p.v
+      ? `<span class="jrnl">${p.j}</span> <span class="yr">· ${p.y} · ${p.v}</span>`
+      : `<span class="jrnl">${p.j}</span> <span class="yr">· ${p.y}</span>`;
+    const noteLine = p.note ? `<span class="yr"> · ${p.note}</span>` : '';
+    li.innerHTML = `
+      <div class="idx">${String(i+1).padStart(2,'0')}</div>
+      <div class="body">
+        <p class="title">${p.t}</p>
+        <p class="authors">${authorsHTML(p.a)}</p>
+        <p class="venue">${venueLine}${noteLine}</p>
+      </div>`;
+    list.appendChild(li);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
