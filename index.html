@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* --- light (default) --- */
   :root{
     --paper:#F7F7F4;
     --paper-2:#FFFFFF;
@@ -17,13 +18,33 @@
     --faint:#9A9A90;
     --line:#E1E1D9;
     --line-strong:#CFCFC5;
-    --accent:#3A6B4E;       /* orchard */
+    --accent:#3A6B4E;
     --accent-deep:#2A4F39;
     --accent-wash:#EBF0EC;
+    --chip-border:#DCE5DD;
+    --pub-hover:#F1F0EA;
+    --selection-fg:#fff;
     --serif:"Newsreader",Georgia,serif;
     --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
     --maxw:880px;
   }
+  /* --- dark override --- */
+  html.dark{
+    --paper:#141412;
+    --paper-2:#1C1C1A;
+    --ink:#E8E8E2;
+    --muted:#8A8A80;
+    --faint:#5C5C54;
+    --line:#2E2E2A;
+    --line-strong:#3A3A35;
+    --accent:#5FA876;
+    --accent-deep:#7BC492;
+    --accent-wash:#1A2E20;
+    --chip-border:#2A3D2E;
+    --pub-hover:#1E1E1B;
+    --selection-fg:#000;
+  }
+
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
   body{
@@ -36,9 +57,10 @@
     font-weight:400;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
+    transition:background .25s ease,color .25s ease;
   }
   a{color:inherit;text-decoration:none;}
-  ::selection{background:var(--accent);color:#fff;}
+  ::selection{background:var(--accent);color:var(--selection-fg);}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 
@@ -48,18 +70,36 @@
     background:color-mix(in srgb,var(--paper) 88%,transparent);
     backdrop-filter:saturate(140%) blur(8px);
     border-bottom:1px solid var(--line);
+    transition:background .25s ease,border-color .25s ease;
   }
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:50px;}
   .brand{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em;}
   .brand .dot{color:var(--accent);}
-  .nav{display:flex;gap:22px;}
+  .nav{display:flex;align-items:center;gap:22px;}
   .nav a{
     font-family:var(--mono);font-size:12.5px;color:var(--muted);
     letter-spacing:.02em;padding:4px 0;border-bottom:1px solid transparent;
     transition:color .18s ease,border-color .18s ease;
   }
   .nav a:hover{color:var(--ink);border-color:var(--accent);}
-  @media(max-width:620px){.nav{display:none;}}
+
+  /* theme toggle button */
+  .theme-btn{
+    display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:6px;
+    border:1px solid var(--line-strong);background:transparent;cursor:pointer;
+    color:var(--muted);transition:color .18s ease,border-color .18s ease,background .18s ease;
+    flex-shrink:0;
+  }
+  .theme-btn:hover{color:var(--ink);border-color:var(--accent);background:var(--paper-2);}
+  .theme-btn svg{width:15px;height:15px;pointer-events:none;}
+  /* show correct icon per mode */
+  .icon-moon{display:block;}
+  .icon-sun{display:none;}
+  html.dark .icon-moon{display:none;}
+  html.dark .icon-sun{display:block;}
+
+  @media(max-width:620px){.nav a:not(.theme-btn){display:none;}}
 
   /* ---------- hero ---------- */
   .hero{padding:46px 0 40px;border-bottom:1px solid var(--line);}
@@ -107,7 +147,7 @@
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
   .chip{
     font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);
-    background:var(--accent-wash);border:1px solid #DCE5DD;border-radius:4px;
+    background:var(--accent-wash);border:1px solid var(--chip-border);border-radius:4px;
     padding:5px 10px;
   }
 
@@ -118,13 +158,14 @@
   .skill-row .v strong{font-weight:600;}
   @media(max-width:560px){.skill-row{grid-template-columns:1fr;gap:6px;}}
 
-  /* timeline (edu + experience) */
+  /* timeline */
   .timeline{border-left:1px solid var(--line-strong);margin-left:6px;}
   .tl-item{position:relative;padding:0 0 22px 30px;}
   .tl-item:last-child{padding-bottom:0;}
   .tl-item::before{
     content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;
     background:var(--paper);border:1.5px solid var(--accent);
+    transition:background .25s ease;
   }
   .tl-date{font-family:var(--mono);font-size:12px;color:var(--accent-deep);letter-spacing:.03em;margin-bottom:5px;}
   .tl-title{font-size:18px;font-weight:600;margin:0 0 3px;}
@@ -142,14 +183,14 @@
     padding:15px 0;border-top:1px solid var(--line);
     transition:background .18s ease;
   }
-  .pub:hover{background:#F1F0EA;}
+  .pub:hover{background:var(--pub-hover);}
   .pub .idx{
     font-family:var(--mono);font-size:13px;color:var(--faint);padding-top:3px;
     border-right:1px solid var(--line);text-align:left;
   }
   .pub .body{min-width:0;}
   .pub .title{font-size:17px;line-height:1.38;font-weight:500;margin:0 0 6px;}
-  .pub .title i, .pub .authors i{font-style:italic;}
+  .pub .title i,.pub .authors i{font-style:italic;}
   .pub .authors{font-size:14.5px;color:var(--muted);line-height:1.5;margin:0 0 7px;}
   .pub .authors .me{color:var(--ink);font-weight:600;background:linear-gradient(transparent 62%,var(--accent-wash) 62%);}
   .pub .venue{font-family:var(--mono);font-size:12.5px;color:var(--ink);}
@@ -197,6 +238,20 @@
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
       <a href="#awards">Awards</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+        <!-- moon: shown in light mode -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- sun: shown in dark mode -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
     </nav>
   </div>
 </div>
@@ -320,6 +375,20 @@
 </footer>
 
 <script>
+// Theme toggle — reads localStorage, falls back to system preference
+(function(){
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+  if(stored === 'dark' || (!stored && prefersDark)){
+    document.documentElement.classList.add('dark');
+  }
+})();
+
+document.getElementById('themeToggle').addEventListener('click', function(){
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
 // Author segment belonging to Jieqiang He is wrapped in ⟦ ⟧ for highlighting.
 const PUBS = [
  {a:"Hou, N.#, ⟦He, J.#⟧, Bao, C.#, Zhi, F., Shen, X., Liu, Y., Li, C., Fan, T., Yang, X., Chu, B., Qin, G., Liu, Z., Mei, C., Tan, B., Feng, J., Ma, F., Malnoy, M.*, Li, X.*, & Guan, Q.*", t:"MdDSK2a-Like–MdMTA module functions in apple cold response via regulating ROS detoxification and cell wall deposition.", j:"Advanced Science", y:"2025", v:"12(26), 2504405", lead:true, pub:true},
@@ -331,13 +400,14 @@ const PUBS = [
  {a:"Li, Z.#, Wang, Lun#, ⟦He, J.#⟧, Li, X.#, Hou, N., Guo, J., Niu, C., Li, Chaoshuo, Liu, S., Xu, J., Xie, Y., Zhang, D., Shen, X., Lu, L., Geng, D., Chen, P., Jiang, L., Wang, Liping, Li, H., Malnoy, M., Deng, C., Zou, Y., Li, C., Zhan, X., Dong, Y., Notaguchi, M., Ma, F.*, Xu, Q.*, & Guan, Q.*", t:"Chromosome-scale reference genome provides insights into the genetic origin and grafting-mediated stress tolerance of <i>Malus prunifolia</i>.", j:"Plant Biotechnology Journal", y:"2022", v:"20(6), 1015–1017", lead:true, pub:true},
  {a:"⟦He, J.⟧, Guo, J., Jiang, L., An, W., Ma, F., Guan, Q.*, & Niu, C.*", t:"Transcriptional effects of rootstock on scion after drought: a case study of using MdGH3 RNAi as the rootstock.", j:"Horticulturae", y:"2022", v:"8(12), 1212", lead:true, pub:true},
  {a:"Mao, X., Hou, N., Liu, Z.*, & ⟦He, J.*⟧", t:"Profiling of N6-methyladenosine (m6A) modification landscape in response to drought stress in apple (<i>Malus prunifolia</i> (Willd.) Borkh).", j:"Plants", y:"2021", v:"11(1), 103", lead:true, pub:true},
+ {a:"Yang, X., Cheng, P., ⟦He, J.⟧, Zhi, F., Mei, C., Hou, N., Liu, X., Shen, W., Bian, N., Yue, Q., Khalil, A., Ma, F., Guan, Q., & Li, X.", t:"MdSCL13 coordinates with MdTCP2 to positively regulate cold tolerance by mediating ROS scavenging and JA biosynthesis.", j:"New Phytologist", y:"2026", v:"250(5), 3147–3166", lead:false, pub:true},
  {a:"Zhi, F., Fan, T., Zhang, Y., Chen, P., He, S., Li, X., Zhang, S., ⟦He, J.⟧, Shen, X., Bao, C., Niu, C., Ma, F., Xie, Y., & Guan, Q.", t:"MdKIN10-mediated phosphorylation of the E3 ubiquitin ligase MdMIEL1 leads to its autophagic degradation under cold stress.", j:"The Plant Cell", y:"2025", v:"koaf284", lead:false, pub:true},
  {a:"Shen, W., Zhang, D., Zhang, Z., ⟦He, J.⟧, Khalil, A., Li, X., Ma, F., Guan, Q., & Niu, C.", t:"The SET-domain-containing protein MdSDG26 negatively regulates <i>Alternaria alternata</i> resistance in apple.", j:"Plant, Cell & Environment", y:"2025", v:"48(1), 323–337", lead:false, pub:true},
  {a:"Cheng, P., Yang, X., Zhang, J., Xia, X., Li, Y., ⟦He, J.⟧, Zhang, D., Zhang, Y., Ma, F., Ma, F., Niu, C., & Guan, Q.", t:"The MdGAMYB–MdHVA22g module confers drought tolerance by mediating γ-aminobutyric acid content and reactive oxygen species scavenging.", j:"The Plant Journal", y:"2025", v:"124(1), e70503", lead:false, pub:true},
  {a:"Bai, D., Chen, T., Xun, J., Ma, C., … ⟦He, J.⟧, … Liu, Y. (consortium)", t:"EasyMetagenome: a user-friendly and flexible pipeline for shotgun metagenomic analysis in microbiome research.", j:"iMeta", y:"2025", v:"4(1), e70001", lead:false, pub:true},
  {a:"Zhang, Y., ⟦He, J.⟧, Qin, G., Yang, K., Chen, P., Niu, C., Li, X., Mei, C., Wang, J., Guan, Q., & Bao, C.", t:"Apple MdZAT5 mediates root development under drought stress.", j:"Plant Physiology and Biochemistry", y:"2024", v:"213, 108833", lead:false, pub:true},
  {a:"Yue, Q., Yang, X., Cheng, P., ⟦He, J.⟧, Shen, W., Li, Y., Ma, F., Niu, C., & Guan, Q.", t:"Heterologous overexpression of apple MdKING1 promotes fruit ripening in tomato.", j:"Plants", y:"2023", v:"12(15), 2848", lead:false, pub:true},
- {a:"Yue, Q., ⟦He, J.⟧, Yang, X., Cheng, P., Khan, A., Shen, W., Song, Y., Wang, S., Ma, F., & Guan, Q.", t:"Transcriptomic analysis revealed the discrepancy between early-ripening ‘Geneva Early’ and late-ripening ‘Hanfu’ apple cultivars during fruit development and ripening.", j:"Horticulturae", y:"2023", v:"9(5), 570", lead:false, pub:true},
+ {a:"Yue, Q., ⟦He, J.⟧, Yang, X., Cheng, P., Khan, A., Shen, W., Song, Y., Wang, S., Ma, F., & Guan, Q.", t:"Transcriptomic analysis revealed the discrepancy between early-ripening 'Geneva Early' and late-ripening 'Hanfu' apple cultivars during fruit development and ripening.", j:"Horticulturae", y:"2023", v:"9(5), 570", lead:false, pub:true},
  {a:"Shen, X., Song, Y., Ping, Y., ⟦He, J.⟧, Xie, Y., Ma, F., Li, X., & Guan, Q.", t:"The RNA-binding protein MdHYL1 modulates cold tolerance and disease resistance in apple.", j:"Plant Physiology", y:"2023", v:"192(3), 2143–2160", lead:false, pub:true},
  {a:"Cheng, P., Yue, Q., Zhang, Y., Zhao, S., Khan, A., Yang, X., ⟦He, J.⟧, Wang, S., Shen, W., Qian, Q., Du, W., Ma, F., Zhang, D., & Guan, Q.", t:"Application of γ-aminobutyric acid (GABA) improves fruit quality and rootstock drought tolerance in apple.", j:"Journal of Plant Physiology", y:"2023", v:"280, 153890", lead:false, pub:true},
  {a:"Wang, S., ⟦He, J.⟧, Deng, M., Wang, C., Wang, R., Yan, J., Luo, M., Ma, F., Guan, Q., & Xu, J.", t:"Integrating ATAC-seq and RNA-seq reveals the dynamics of chromatin accessibility and gene expression in apple response to drought.", j:"Int. Journal of Molecular Sciences", y:"2022", v:"23(19), 11191", lead:false, pub:true},
