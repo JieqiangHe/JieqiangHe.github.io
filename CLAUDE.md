@@ -22,6 +22,12 @@ Sections `education`, `experience`, `awards` are static HTML — edit in place.
 Only `publications` is data-driven, rendered from the `PUBS` array in the single
 `<script>` at the bottom.
 
+The contact row in the hero is a list of `.pill` anchors. Each carries its own
+inline icon — a 24×24 stroke-only SVG, `fill="none" stroke="currentColor"
+stroke-width="2"`, sized to 13px by CSS. There is no icon font and no sprite, so a
+new link needs its path data pasted in. Keep external links `target="_blank"
+rel="noopener"`.
+
 ## Adding a publication
 
 **1. PDF into `docs/`**, named `<year>-<first-author>-<keywords>.pdf`, e.g.
@@ -70,9 +76,22 @@ Note `grep -o 'f:"[^"]*"'` without the leading comma also matches the CSS
 
 ## Environment
 
-No `python3` and no `node` in this container. `perl` and `bash` are available.
-`micromamba` is installed with a `dev` environment if something genuinely needs
-installing — ask first.
+No `python3` and no `node` in this container. `perl`, `bash` and `git` are available.
+
+`micromamba` has no general-purpose environment — `base` holds only `micromamba`
+itself, and every other env is one tool pinned to one version (`seqkit_2.13.0`,
+`gh_2.96.0`, …). Run a tool without activating anything:
+
+```bash
+micromamba run -n gh_2.96.0 gh run list --limit 3
+```
+
+`gh` is authenticated as `JieqiangHe` and `gh auth setup-git` has been run, so
+`git push origin main` works on its own. Pushing kicks off GitHub's own
+`pages-build-deployment` workflow, which takes a few minutes; `gh run list`
+shows whether the publish actually succeeded.
+
+Creating a new env is a last resort — ask first.
 
 ## CSS notes
 
