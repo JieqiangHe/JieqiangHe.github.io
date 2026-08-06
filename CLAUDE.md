@@ -32,8 +32,8 @@ Zotero-style exports are full of these. The filename goes straight into a URL, s
 keeping it plain avoids percent-escaping. Avoid a second `.` in the stem
 (`MdGH3.6` → `MdGH3-6`).
 
-**2. Entry at the top of `PUBS`** — the list renders in array order, newest first,
-and the displayed number is just the array index.
+**2. Entry at the top of `PUBS`** — the list renders in array order, newest first.
+Entries are not numbered.
 
 | Field | Meaning |
 | --- | --- |
