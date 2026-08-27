@@ -78,18 +78,39 @@ Note `grep -o 'f:"[^"]*"'` without the leading comma also matches the CSS
 
 No `python3` and no `node` in this container. `perl`, `bash` and `git` are available.
 
-`micromamba` has no general-purpose environment — `base` holds only `micromamba`
-itself, and every other env is one tool pinned to one version (`seqkit_2.13.0`,
-`gh_2.96.0`, …). Run a tool without activating anything:
+`micromamba` is not on `PATH` — call it by full path
+`/home/jh/micromamba/bin/micromamba` (a.k.a. `$MAMBA_EXE`). It has no
+general-purpose environment: `base` holds only `micromamba` itself, and every
+other env is one tool pinned to one version (`seqkit_2.13.0`,
+`poppler_26.05.0`, …). Run a tool without activating anything:
 
 ```bash
-micromamba run -n gh_2.96.0 gh run list --limit 3
+/home/jh/micromamba/bin/micromamba run -n poppler_26.05.0 pdftotext -layout in.pdf out.txt
 ```
 
-`gh` is authenticated as `JieqiangHe` and `gh auth setup-git` has been run, so
-`git push origin main` works on its own. Pushing kicks off GitHub's own
-`pages-build-deployment` workflow, which takes a few minutes; `gh run list`
-shows whether the publish actually succeeded.
+Outbound network is **selectively filtered**: `www.mdpi.com`, `doi.org`,
+`example.com` and most other hosts fail with `SSL connect error … unexpected
+eof`. Reachable: `mirrors.ustc.edu.cn`, `mirrors.tuna.tsinghua.edu.cn`,
+`crossref.org`, `api.crossref.org`, `api.github.com`. So the default conda
+channels are unusable — pass the USTC mirror explicitly:
+
+```bash
+/home/jh/micromamba/bin/micromamba create -y -n <name> <pkg>=<ver> \
+  -c https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/
+```
+
+`poppler_26.05.0` provides `pdftotext` — the way to read PDFs in this
+container (e.g. a saved MDPI special-issue page from `../srcs/`).
+
+There is no `gh` CLI and no env for it, but `git push origin main` works on
+its own — credentials are cached. Pushing kicks off GitHub's own
+`pages-build-deployment` workflow, which takes a few minutes; check whether
+the publish actually succeeded via the API:
+
+```bash
+curl -s "https://api.github.com/repos/JieqiangHe/JieqiangHe.github.io/actions/runs?per_page=3" \
+  | grep -E '"name"|"status"|"conclusion"'
+```
 
 Creating a new env is a last resort — ask first.
 
