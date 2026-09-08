@@ -30,13 +30,15 @@ rel="noopener"`.
 
 ## Adding a publication
 
-**1. PDF into `docs/`**, named `<year>-<first-author>-<keywords>.pdf`, e.g.
-`2025-Cheng-MdGAMYB-MdHVA22g-drought.pdf`.
-
-ASCII only. No spaces, no `γ`, no curly quotes, no typographic hyphens (`‐` U+2010) —
-Zotero-style exports are full of these. The filename goes straight into a URL, so
-keeping it plain avoids percent-escaping. Avoid a second `.` in the stem
-(`MdGH3.6` → `MdGH3-6`).
+**1. PDF into `docs/`**. Use the globally installed `$jh-publication-pdf-naming`
+skill from `$CODEX_HOME/skills/jh-publication-pdf-naming/SKILL.md`; this repository
+does not keep a project-local copy. Use it to generate or validate the filename
+from the four-digit year, first-author English surname, publication journal, and
+full article title. The format is
+`<year>_<first-author-surname>_<normalized-journal>_<normalized-full-title>.pdf`.
+Use lowercase ASCII; separate metadata parts with underscores and words inside
+the journal or title with hyphens. Replace an internal period with a hyphen
+(`MdGH3.6` → `mdgh3-6`). Do not summarize the title or select keywords manually.
 
 **2. Entry at the top of `PUBS`** — the list renders in array order, newest first.
 Entries are not numbered.
