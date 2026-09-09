@@ -18,7 +18,7 @@ surrounding compact style when adding to it.
 `<!DOCTYPE html>` must stay. Dropping it triggers quirks mode and breaks the grid
 layout and `box-sizing`.
 
-Sections `education`, `experience`, `awards` are static HTML — edit in place.
+Sections `education`, `employment`, `experience`, `awards` are static HTML — edit in place.
 Only `publications` is data-driven, rendered from the `PUBS` array in the single
 `<script>` at the bottom.
 
@@ -39,6 +39,14 @@ full article title. The format is
 Use lowercase ASCII; separate metadata parts with underscores and words inside
 the journal or title with hyphens. Replace an internal period with a hyphen
 (`MdGH3.6` → `mdgh3-6`). Do not summarize the title or select keywords manually.
+
+Before copying the PDF, verify its title, author order, journal, year, DOI, and
+volume/article information against both the paper and reliable DOI metadata. Use
+the contribution or correspondence footnotes in the paper for `#` and `*`; never infer
+these markers from author order or from missing Crossref fields. When the source
+PDF is outside this repository, copy it into `docs/` and leave the source file
+untouched. For an online-first paper without volume, issue, or pages, put its
+article number in `v`.
 
 **2. Entry at the top of `PUBS`** — the list renders in array order, newest first.
 Entries are not numbered.
