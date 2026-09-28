@@ -1,18 +1,12 @@
 # jieqianghe.github.io
 
-Personal academic website of Jieqiang He: employment, education, publications, and awards. It is a single static page with no framework, web fonts, or build step.
+Personal academic website of Jieqiang He, a plant biologist working on abiotic stress, grafting, and the microbiome.
 
 **Live:** https://jieqianghe.github.io/
 
-## Contents
+## Sections
 
-- `index.html`: the whole site, including markup, styles, and the publication list (the `PUBS` array in the script at the end)
-- `pubs/`: PDFs of the publications, named `<year>_<first-author>_<journal>_<title>.pdf`
-
-## Adding a publication
-
-Add an entry to `PUBS` in `index.html` and put its PDF in `pubs/`. Mark your own name with `⟦ ⟧`, co-first authors with `#`, and corresponding authors with `*`.
-
-## Usage
-
-Open `index.html` in a browser. Pushing to `main` publishes the site through GitHub Pages.
+- **Employment and education:** Research Assistant and Ph.D. in Pomology, Northwest A&F University
+- **Research internships:** Fondazione Edmund Mach (Italy) and NPUST
+- **Publications:** 32 papers, each linking to its PDF and DOI
+- **Awards and service:** talks, prizes, guest editing, and reviewing
