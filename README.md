@@ -1,3 +1,3 @@
-Personal academic website of Jieqiang He.
+Personal academic website of **Jieqiang He**.
 
-**Live:** https://jieqianghe.github.io/
+→ [jieqianghe.github.io](https://jieqianghe.github.io/)
