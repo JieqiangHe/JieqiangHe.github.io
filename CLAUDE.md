@@ -12,7 +12,7 @@ This is Jieqiang He's personal academic website, published at <https://jieqiangh
 
 ### Publication rendering
 
-Each `PUBS` record uses `a` (authors), `t` (title), `j` (journal), `y` (year), `v` (volume/pages/article number), `doi`, `f` (PDF filename), and optional `note`. Records display in array order, with newest years first by convention; there is no automatic sorting.
+Each `PUBS` record uses `a` (authors), `t` (title), `j` (journal), `y` (year), `v` (volume/pages/article number), `doi`, `f` (PDF filename), and optional `note`. Records display in array order; there is no automatic sorting. The array is kept in two groups: first, every paper where J. He is first author, co-first author (`#`), or corresponding author (`*`), treated as one group regardless of role; then all other papers. Within each group, order by year with the newest first, keeping the existing relative order within a year. When adding a record, insert it in the correct group and year position. The roles come from the `⟦…⟧` name: it leads the author string, or contains `#` or `*`.
 
 Author strings use `⟦…⟧` to identify the name highlighted by the renderer. Preserve these delimiters, literal `#`/`*` contribution markers, and the accompanying legend. Titles and notes may contain intentional HTML or entities, such as `<i>` for species names. The renderer uses `innerHTML`, so these are trusted, HTML-bearing records rather than escaped plain text.
 
